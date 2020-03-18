@@ -31,7 +31,8 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-
+  # check job is to run over all code.
+  check:
     # runs PyCodeStyle over Python code
     - name: Python Style Checker
       uses: andymckay/pycodestyle-action@0.1.3
