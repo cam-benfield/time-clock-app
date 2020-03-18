@@ -1,5 +1,8 @@
-# time-clock-app
-Time Clock App
+# Time Clock App
+
+# Goals
+
+# Contributors
 
 # License
 Mozilla Public License 2.0
