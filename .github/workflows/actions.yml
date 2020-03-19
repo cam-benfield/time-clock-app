@@ -31,6 +31,6 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-        
+  test:      
     - name: wemake-python-styleguide
       uses: wemake-services/wemake-python-styleguide@0.13.4
