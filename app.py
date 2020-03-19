@@ -10,22 +10,24 @@ app.config['MYSQL_DB'] = 'MyDB'
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
+    """Renders index template for homepage."""
     return(render_template('index.html'))
 
 @app.route('/employee_add', methods = ['GET', 'POST'])
 def employee_update():
+    """Renders employee update page"""
     today = datetime.datetime.now()
-    month_num = today.strftime("%m")
-    year_num = today.strftime("%y")
+    month_num = today.strftime('%m')
+    year_num = today.strftime('%y')
 
-    if request.method == "POST":
+    if request.method == 'POST':
         details = request.__format__
-        firstName = details['fname']
-        lastName = details['lname']
-        emailAdd = details['email']
-        phoneNum = details['phone']
-        birthDate = details['birthdate']
-        empID = lower(firstName[0]+lastName[0]+month_num+year_num)
+        firstname = details['fname']
+        lastname = details['lname']
+        emailadd = details['email']
+        phonenum = details['phone']
+        birthdate = details['birthdate']
+        emp_id = lower(firstName[0]+lastName[0]+month_num+year_num)
 
         cur = mysql.connection.cursor()
         cur.execute("""INSERT INTO Employees(
