@@ -1,33 +1,49 @@
+# -*- coding: utf-8 -*-
+
+"""Application Docstring.
+
+Application intended to build a time clock for small businesses to minimize
+cost paid out to outside companies.
+"""
+
+
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 import datetime
+
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'  # TODO: Change password later
 app.config['MYSQL_DB'] = 'MyDB'
 
-@app.route('/', methods = ['GET', 'POST'])
-def index():
-    """Renders index template for homepage."""
-    return(render_template('index.html'))
+def employee_num(details):
 
-@app.route('/employee_add', methods = ['GET', 'POST'])
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    """Home page module.
+
+    Returns:
+        index template for homepage
+        """
+    return render_template('index.html')
+
+
+@app.route('/employee_add', methods=['GET', 'POST'])
 def employee_update():
-    """Renders employee update page"""
-    today = datetime.datetime.now()
-    month_num = today.strftime('%m')
-    year_num = today.strftime('%y')
+    """Employee update page module.
+
+    Returns:
+        employee update page
+        """
 
     if request.method == 'POST':
         details = request.__format__
-        firstname = details['fname']
-        lastname = details['lname']
-        emailadd = details['email']
-        phonenum = details['phone']
-        birthdate = details['birthdate']
-        emp_id = lower(firstName[0]+lastName[0]+month_num+year_num)
+        # details is dict and has'fname','lname','email','phone','birthdate'
+        emp_id = lower(details['fname'][0]+details['lname'])+mon_num+yr_num
 
         cur = mysql.connection.cursor()
         cur.execute("""INSERT INTO Employees(
@@ -47,8 +63,7 @@ def employee_update():
                     )
         );""")
 
-    return(render_template('employee_update.html'))
-
+    return render_template('employee_update.html')
 
 
 if __name__ == '__main__':
