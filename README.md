@@ -1,12 +1,13 @@
 # Time Clock App
 ![Python application](https://github.com/camrhosyn/time-clock-app/workflows/Python%20application/badge.svg?branch=master)
+
 Locally-based time clock for use by independent businesses.
 
 # Goals
  - Allow small businesses to download and utilize this app to manage hours for employees, as well as pay rates and employee contact information.
 
-# Dependencies
-- flask_mysqldb
+# Setup
+- This build uses anaconda for virtual environment management, but you can utilize any python3 iteration.
 
 # Contributors
 Name | GitHub | Email

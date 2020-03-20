@@ -14,13 +14,13 @@ from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-mysql = MySQL(app)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'root'  # TODO: Change password later
 app.config['MYSQL_DB'] = 'MyDB'
 
+mysql = MySQL(app)
 
 def employee_id_gen(empl):
     """Generate employee ID.
