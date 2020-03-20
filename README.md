@@ -1,4 +1,5 @@
 # Time Clock App
+![Python application](https://github.com/camrhosyn/time-clock-app/workflows/Python%20application/badge.svg?branch=master)
 Locally-based time clock for use by independent businesses.
 
 # Goals
