@@ -28,7 +28,7 @@ def employee_id_gen(empl):
         empl (dict): Dictionary of employee information
 
     Returns:
-        Employee ID as str.
+        eid (str): Employee ID as str.
 
     """
     eid = str(empl['fname'][0]+empl['lname'][:3]+empl['hiredt']+empl['bdate'])
@@ -40,7 +40,7 @@ def index():
     """Return Home Page Route.
 
     Returns:
-        render_template - Index template for homepage
+        render_template (html): Index template for homepage
         """
     return render_template('index.html')
 
@@ -50,7 +50,7 @@ def employee_update():
     """Return Employee Add Route.
 
     Returns:
-        render_template - Employee add Page
+        render_template (HTML): Employee add Page
         """
     if request.method == 'POST':
         empl = request.__format__
