@@ -40,3 +40,13 @@ jobs:
     - name: wemake-python-styleguide
       uses: wemake-services/wemake-python-styleguide@0.13.4
       continue-on-error: true
+
+    - name: HTML5 Validator
+      uses: Cyb3r-Jak3/html5validator-action@v0.4
+      with root:
+        root: Templates
+
+      uses: actions/upload-artifact@v1
+      with:
+        name: log
+        path: Templates/logs/log.log

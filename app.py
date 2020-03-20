@@ -11,14 +11,14 @@ import datetime
 
 from flask import Flask, render_template, request
 
-from flask_mysqldb import MySQL
+from flask_mysqldb import mysql
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'  # TODO: Change password later
-app.config['MYSQL_DB'] = 'MyDB'
+app.config['mysql_HOST'] = 'localhost'
+app.config['mysql_USER'] = 'root'
+app.config['mysql_PASSWORD'] = 'root'  # TODO: Change password later
+app.config['mysql_DB'] = 'MyDB'
 
 
 def employee_id_gen(empl):
@@ -59,14 +59,15 @@ def employee_update():
         empl['hiredt'] = datetime.strptime(empl['hiredt'], '%Y-%m-%d')
         emp_id = employee_id_gen(empl)
 
-        cur = MySQL.connection.cursor()
+        cur = mysql.connection.cursor()
         cur.execute("""INSERT INTO Employees(
                         empID,
                         firstName,
                         lastName,
                         emailAdd,
                         phoneNum,
-                        birthDate)
+                        birthDate,
+                        hireDate)
                     VALUES(
                         %s,
                         %s,
@@ -75,8 +76,12 @@ def employee_update():
                         %s,
                         %s
                     )
-        );""")
-
+        );""", emp_id, empl['fname'], empl['lname'], empl['email'],
+                    empl['phone'], empl['bdate'], empl['hiredt'],
+                    )
+        mysql.connection.commit()
+        cur.close()
+        return 'success'
     return render_template('employee_update.html')
 
 
