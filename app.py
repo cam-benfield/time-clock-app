@@ -7,9 +7,11 @@ cost paid out to outside companies.
 """
 
 
-from flask import Flask, render_template, request
-from flask_mysqldb import MySQL
 import datetime
+
+from flask import Flask, render_template, request
+
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
@@ -35,7 +37,7 @@ def employee_id_gen(empl):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    """Home Page Route.
+    """Return Home Page Route.
 
     Returns:
         render_template - Index template for homepage
@@ -45,7 +47,7 @@ def index():
 
 @app.route('/employee_add', methods=['GET', 'POST'])
 def employee_update():
-    """Employee Add Route.
+    """Return Employee Add Route.
 
     Returns:
         render_template - Employee add Page
@@ -57,7 +59,7 @@ def employee_update():
         empl['hiredt'] = datetime.strptime(empl['hiredt'], '%Y-%m-%d')
         emp_id = employee_id_gen(empl)
 
-        cur = mysql.connection.cursor()
+        cur = MySQL.connection.cursor()
         cur.execute("""INSERT INTO Employees(
                         empID,
                         firstName,
