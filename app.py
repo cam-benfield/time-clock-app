@@ -18,32 +18,44 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'root'  # TODO: Change password later
 app.config['MYSQL_DB'] = 'MyDB'
 
-def employee_num(details):
 
+def employee_id_gen(empl):
+    """Generate employee ID.
+
+    Args:
+        empl (dict): Dictionary of employee information
+
+    Returns:
+        Employee ID as str.
+
+    """
+    eid = str(empl['fname'][0]+empl['lname'][:3]+empl['hiredt']+empl['bdate'])
+    return eid
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    """Home page module.
+    """Home Page Route.
 
     Returns:
-        index template for homepage
+        render_template - Index template for homepage
         """
     return render_template('index.html')
 
 
 @app.route('/employee_add', methods=['GET', 'POST'])
 def employee_update():
-    """Employee update page module.
+    """Employee Add Route.
 
     Returns:
-        employee update page
+        render_template - Employee add Page
         """
-
     if request.method == 'POST':
-        details = request.__format__
-        # details is dict and has'fname','lname','email','phone','birthdate'
-        emp_id = lower(details['fname'][0]+details['lname'])+mon_num+yr_num
+        empl = request.__format__
+        # empl is dict and has'fname','lname','email','phone','birthdate'
+        empl['bdate'] = datetime.strptime(empl['bdate'], '%Y-%m-%d')
+        empl['hiredt'] = datetime.strptime(empl['hiredt'], '%Y-%m-%d')
+        emp_id = employee_id_gen(empl)
 
         cur = mysql.connection.cursor()
         cur.execute("""INSERT INTO Employees(
