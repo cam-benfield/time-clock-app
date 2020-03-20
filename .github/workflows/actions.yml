@@ -46,7 +46,7 @@ jobs:
       with:
         root: Templates
 
-      uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v1
       with:
         name: log
         path: Templates/logs/log.log
