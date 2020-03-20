@@ -11,14 +11,15 @@ import datetime
 
 from flask import Flask, render_template, request
 
-from flask_mysqldb import mysql
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
+mysql = MySQL(app)
 
-app.config['mysql_HOST'] = 'localhost'
-app.config['mysql_USER'] = 'root'
-app.config['mysql_PASSWORD'] = 'root'  # TODO: Change password later
-app.config['mysql_DB'] = 'MyDB'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'  # TODO: Change password later
+app.config['MYSQL_DB'] = 'MyDB'
 
 
 def employee_id_gen(empl):
@@ -40,7 +41,7 @@ def index():
     """Return Home Page Route.
 
     Returns:
-        render_template (html): Index template for homepage
+        index (html): Index template for homepage
         """
     return render_template('index.html')
 
